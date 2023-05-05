@@ -9,6 +9,7 @@ public class Card {
     }
 
     public int getRank() {
+
         return rank.getRank();
     }
     public String getRankName() {
