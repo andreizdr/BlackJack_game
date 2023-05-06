@@ -1,16 +1,16 @@
 
 public class Game {
+        private Deck deck;
+        private Hand playerHand;
+        private Hand houseHand;
 
-    Card card;
 
     public Game() {
-     /*   Deck myDeck = new Deck();
-        myDeck.shuffle();
-        for (Card card : myDeck.deck) {
-            System.out.println(card);
-       card = myDeck.draw();
-       System.out.println(card);
-       System.out.println(myDeck.deck.size());
-        } */
+        deck = new Deck();
+        deck.shuffle();
+        playerHand = new Hand(deck);
+        houseHand = new Hand(deck);
+        System.out.println(playerHand);  // Just for testing purposes
+        System.out.println(houseHand);   // Just for testing purposes
     }
 }
