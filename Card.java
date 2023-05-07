@@ -1,7 +1,7 @@
     public class Card {
         Rank rank;
         Suit suit;
-        boolean isFaceUp;
+        boolean isFaceDown;
 
         public Card(Rank rank, Suit suit) {
             this.rank = rank;
