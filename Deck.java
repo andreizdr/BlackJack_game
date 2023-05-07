@@ -3,9 +3,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
-    static int cardCount = 52;
-
-     ArrayList<Card> deck = new ArrayList<>(52);   // This is the deck of cards which will be used in the game. It will be made private after tests.
+     private ArrayList<Card> deck = new ArrayList<>(52);   // This is the deck of cards which will be used in the game. It will be made private after tests.
     Card card;
 
     // Constructor
@@ -28,7 +26,6 @@ public class Deck {
         int index = rand.nextInt(deck.size());
         Card randomCard = deck.get(index);
         deck.remove(randomCard);
-        cardCount--;
         return randomCard;
     }
 }
