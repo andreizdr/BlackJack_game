@@ -24,6 +24,7 @@ public class Game {
 
     public void hit() {
         playerHand.addCard();
+        System.out.println("You now have the cards :" + playerHand + " and have " + playerHand.getPoints() + " points!");
         playerPoints = playerHand.getPoints();
         if (playerHand.getPoints() > 21) {
             System.out.println(playerHand);
@@ -37,11 +38,11 @@ public class Game {
         playerPoints = playerHand.getPoints();
         houseHand.showCard();
         housePoints = houseHand.getPoints();
+        System.out.println("The house has the cards :" + houseHand + " and has " + houseHand.getPoints() + " points!");
         while (housePoints < playerPoints) {
             houseHand.addCard();
             housePoints = houseHand.getPoints();
             if (housePoints > 21) {
-                System.out.println("You have won the game!");
                 playerHand.clear();
                 houseHand.clear();
                 break;
@@ -63,7 +64,6 @@ public class Game {
             String s = reader.readLine();
             if (s.equals("Hit")) {
                 hit();
-                System.out.println("You now have the cards :" + playerHand + " and have " + playerHand.getPoints() + " points!");
             }
             else if (s.equals("Stay")) {
                 stay();
