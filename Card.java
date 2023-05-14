@@ -13,7 +13,6 @@
             return rank.getRank();
         }
         public String getRankName() {
-
             return rank.getRankName();
         }
 
