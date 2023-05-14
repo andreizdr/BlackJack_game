@@ -5,6 +5,7 @@ public class Hand {
     Deck deck;
     int tempPoints = 0;
     int points = 0;
+    boolean hasAce;
     public Hand(Deck deck) {
         this.deck = deck;
         for (int i = 0; i < 2; i++) {      // Hand is being populated
@@ -13,6 +14,7 @@ public class Hand {
     }
 
     public void addCard() {             // Add a card to the desired hand
+
         cards.add(deck.draw());
     }
     public void hideCard() {
@@ -25,7 +27,10 @@ public class Hand {
 
     public int getPoints() {            // Calculate points of each hand
         for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).isFaceDown == false) {
+            if (cards.get(i).rank.equals(Rank.ACE)) {
+                hasAce = true;
+            }
+            if (!cards.get(i).isFaceDown) {
                 tempPoints += cards.get(i).getRank();
             }
         }
@@ -38,6 +43,7 @@ public class Hand {
         cards.clear();
         points = 0;
     }
+
     @Override
     public String toString() {
         String str = "";
