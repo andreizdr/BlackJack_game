@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
-     private ArrayList<Card> deck = new ArrayList<>(52);   // This is the deck of cards which will be used in the game. It will be made private after tests.
+     private ArrayList<Card> deck = new ArrayList<>(52);
     Card card;
 
     // Constructor
