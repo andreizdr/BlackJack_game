@@ -3,11 +3,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Game {
-        private Deck deck;
-        private Hand playerHand;
-        private Hand houseHand;
-        private static int playerPoints;
-        private static int housePoints;
+    private Deck deck;
+    private Hand playerHand;
+    private Hand houseHand;
+    private static int playerPoints;
+    private static int housePoints;
 
 
 
@@ -20,32 +20,48 @@ public class Game {
         play();
     }
 
-    public void hit() {
+    public void hit()  {
         playerHand.addCard();
-        System.out.println("You now have the cards :" + playerHand + " and have " + playerHand.getPoints() + " points!");
         playerPoints = playerHand.getPoints();
-        if (playerHand.getPoints() > 21) {
+        if (playerPoints <= 11 && playerHand.hasAce) {
+            playerPoints += 10;
+            System.out.println("You now have the cards :" + playerHand + " and have " + playerPoints + " points!");
+        }
+        else if (playerPoints > 21) {
+            System.out.println("You now have the cards :" + playerHand + " and have " + playerPoints + " points!");
             System.out.println("Player has busted!");
             playerHand.clear();
             houseHand.clear();
         }
+        else if (playerPoints <= 21) {
+            System.out.println("You now have the cards :" + playerHand + " and have " + playerHand.getPoints() + " points!");
+        }
     }
 
-    public void stay() {
+    public void stay()  {
         playerPoints = playerHand.getPoints();
         houseHand.showCard();
         housePoints = houseHand.getPoints();
-        while (housePoints < playerPoints) {
+        if (housePoints >= playerPoints) {
+            System.out.println("The house has the cards: " + houseHand + " and has " + houseHand.getPoints() + " points!");
+            System.out.println("The house has won the game!");
+        }
+        while (housePoints < playerPoints)  {
             houseHand.addCard();
             housePoints = houseHand.getPoints();
-            if (housePoints > 21) {
+           if (housePoints <= 11 && houseHand.hasAce) {
+                housePoints += 10;
+                System.out.println("The house, now has the cards: " + houseHand + " and has " + houseHand.getPoints() + " points!");
+            }
+           else if (housePoints > 21) {
                 System.out.println("The house, now has the cards: " + houseHand + "and has busted " + "with " + houseHand.getPoints());
                 System.out.println("You have won the game!");
                 playerHand.clear();
                 houseHand.clear();
                 break;
+
             }
-            else if (housePoints > playerPoints) {
+           else if (housePoints >= playerPoints) {
                 System.out.println("The house, now has the cards: " + houseHand + " and has " + houseHand.getPoints() + " points!");
                 System.out.println("The house has won the game!");
                 playerHand.clear();
@@ -53,17 +69,19 @@ public class Game {
                 break;
             }
         }
-        if (housePoints > playerPoints && housePoints < 21) {
-            System.out.println("The house has the cards: " + houseHand + "and has " + houseHand.getPoints() + " points!");
-            System.out.println("The house has won the game!");   // To ask why does this not execute before the while
-            playerHand.clear();
-            houseHand.clear();
-        }
     }
 
-   public void play() throws IOException {
-        System.out.println("The house has the cards :" + houseHand + " and has " + houseHand.getPoints() + " points!");
-        System.out.println("You have the cards :" + playerHand + " and have " + playerHand.getPoints() + " points!");
+    public void play() throws IOException {
+        playerPoints = playerHand.getPoints();
+        housePoints = houseHand.getPoints();
+        if (playerHand.hasAce && playerPoints <= 11) {
+            playerPoints = playerPoints + 10;
+        }
+        if (houseHand.hasAce && housePoints <= 11) {
+            housePoints = housePoints + 10;
+        }
+        System.out.println("The house has the cards :" + houseHand + " and has " + housePoints + " points!");
+        System.out.println("You have the cards :" + playerHand + " and have " + playerPoints + " points!");
         System.out.println("What is your choice?");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
