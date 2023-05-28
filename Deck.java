@@ -10,7 +10,8 @@ public class Deck {
     public Deck() {
         for (Rank rank : Rank.values()) {
             for (Suit suit : Suit.values()) {
-                card = new Card(rank, suit);
+                String imagePath = "CardImages/"+rank.getRankName()+suit.getSuit()+".png";
+                card = new Card(rank, suit, imagePath);
                 deck.add(card);
             }
         }
